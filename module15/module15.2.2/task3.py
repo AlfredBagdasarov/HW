@@ -8,24 +8,18 @@ for _ in range(numbers_count):
 if numbers_list:
     maximum = numbers_list[0]
     minimum = numbers_list[0]
+    index = 0
     minimum_index = 0
     maximum_index = 0
 
     for i in numbers_list:
         if maximum < i:
             maximum = i
-        if minimum > i:
+            maximum_index = index
+        elif minimum > i:
             minimum = i
-    for index in numbers_list:
-        if index != maximum:
-            maximum_index += 1
-        else:
-            break
-    for index in numbers_list:
-        if index != minimum:
-            minimum_index += 1
-        else:
-            break
+            minimum_index = index
+        index += 1
 
     print('Максимальное число в списке:', maximum)
     print('Минимальное число в списке:', minimum)
