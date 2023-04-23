@@ -1,5 +1,6 @@
 import random
 
+
 def create_random_tuple(num_1, num_2, range_num):
     return tuple(random.randint(num_1, num_2) for _ in range(range_num))
 
