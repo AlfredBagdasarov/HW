@@ -10,4 +10,4 @@ incomes = {
 }
 
 for i_good, i_price in incomes.items():
-    print(i_good,'--', i_price, '\n')
+    print(i_good, '--', i_price, '\n')
