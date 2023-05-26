@@ -1,0 +1,1223 @@
+
+import platform
+import sys
+
+info = 'OS info is \n{}\n\nPython version is {} {}'.format(
+    platform.uname(),
+    sys.version,
+    platform.architecture(),
+)
+print(info)
+
+with open('os_info.txt', 'w', encoding='utf8') as file:
+    file.write(info)
+
+
+****************************************
+
+def summ(number):
+    summ = 0
+    while number > 0:
+        summ += number % 10
+        number //= 10
+    print('\nСумма чисел:', summ)
+    return summ
+def count(number):
+    count = 0
+    while number > 0:
+        count += 1
+        number //= 10
+    print('Количество цифр в числе:', count)
+    return count
+
+number = int(input('Введите число: '))
+
+if number > 0:
+    summ = summ(number)
+    number_count = count(number)
+    print('Разность суммы и количества цифр:', summ - number_count)
+else:
+    print('Ошибка ввода! Введите целое положительное число.')
+
+****************************************
+
+def gcd(number):
+    gcd_min = 1
+    for divider in range(number, 1, -1):
+        if number % divider == 0:
+            gcd_min = divider
+    print('Наименьший делитель, отличный от единицы:', gcd_min)
+
+number = int(input('Введите число: '))
+
+gcd(number)
+
+****************************************
+
+def coin():
+    if abs(x) <= radius and abs(y) <= radius:
+        print('\nМонетка где-то рядом')
+    else:
+        print('\nМонетки в области нет')
+
+print('Введите координаты монетки: ')
+x = float(input('X: '))
+y = float(input('Y: '))
+radius = float(input('Введите радиус: '))
+
+coin()
+
+
+****************************************
+
+def years(first_year, second_year):
+    for year in range(first_year, second_year + 1):
+        first_num = year // 1000
+        second_num = year // 100 % 10
+        third_num = year // 10 % 10
+        fourth_num = year % 10
+        if third_num == fourth_num == first_num or first_num == second_num == fourth_num or first_num == second_num == third_num or second_num == third_num == fourth_num:
+            print(year)
+def number_count(number):
+    count = 0
+    while number != 0:
+        number % 10
+        count += 1
+        number //= 10
+    return count
+
+first_year = int(input('Введите первый год: '))
+second_year = int(input('Введите второй год: '))
+
+if number_count(first_year) == 4 and number_count(second_year) == 4:
+    print(f'\nГоды от {first_year} до {second_year} с тремя одинаковыми цифрами:')
+    years(first_year, second_year)
+else:
+    print('Введите год содержащий четырехзначное число')
+
+
+****************************************
+
+number = int(input('Введите число: '))
+odd_list = []
+
+for num in range(1, number + 1):
+    if num % 2 == 1:
+        odd_list.append(num)
+print(f'Список из нечётных чисел от одного до {number}:', odd_list)
+
+****************************************
+
+name_list = ['Артемий', 'Борис', 'Влад', 'Гоша', 'Дима', 'Евгений', 'Женя', 'Захар']
+first_day_list = []
+
+for i in range(0, len(name_list) - 1, 2):
+    first_day_list.append(name_list[i])
+print(first_day_list)
+
+****************************************
+
+cards_count = int(input('Введите количество видеокарт: '))
+old_list = []
+new_list = []
+
+for card in range(cards_count):
+    card_number = int(input(f'{card + 1} Видеокарта: '))
+    old_list.append(card_number)
+print('Старый список видеокарт:', old_list)
+
+for new in old_list:
+    maximum = max(old_list)
+    if new != maximum:
+        new_list.append(new)
+print('Новый список видеокарт:', new_list)
+
+****************************************
+
+films = ['Крепкий орешек', 'Назад в будущее', 'Таксист',
+         'Леон', 'Богемская рапсодия', 'Город грехов',
+         'Мементо', 'Отступники', 'Деревня']
+favorite_movie_list = []
+films_count = int(input('Сколько фильмов хотите добавить? '))
+
+for film in range(films_count):
+    title_film = input('Введите название фильма: ')
+    if title_film in films:
+        favorite_movie_list.append(title_film)
+    else:
+        print(f'Ошибка: фильма {title_film} у нас нет :(')
+print('Ваш список любимых фильмов:', favorite_movie_list)
+
+****************************************
+
+containers_count = int(input('Количество контейнеров: '))
+containers_list = []
+
+for i in range(containers_count):
+    while True:
+        weight = int(input(f'Введите вес {i + 1} контейнера: '))
+        if 0 < weight < 200:
+            break
+        else:
+            print('Вес контейнера не может быть меньше нуля и больше 200кг')
+    containers_list.append(weight)
+#этот кусочек кода для сортировки списка, решил добавить для контроля ввода
+for i in range(len(containers_list)):
+    maximum = i
+    for mx in range(i + 1, len(containers_list)):
+        if containers_list[mx] > containers_list[maximum]:
+            maximum = mx
+    containers_list[maximum], containers_list[i] = containers_list[i], containers_list[maximum]
+
+new_weight = int(input('Введите вес нового контейнера: '))
+count = 1
+for j in range(len(containers_list)):
+    if new_weight <= containers_list[j]:
+        b = containers_list[j]
+        count += 1
+print('Номер, который получит новый контейнер: ', count)
+
+
+****************************************
+
+numbers_count = int(input('Сколько чисел внести в список? '))
+start_list = []
+new_list = []
+
+for i in range(numbers_count):
+    number = int(input(f'Введите {i + 1} число: '))
+    start_list.append(number)
+
+shift = int(input('Сдвиг: '))
+for j in range(len(start_list)):
+    new_list.append(start_list[j-shift])
+
+print('Изначальный список: ', start_list)
+print('Сдвинутый список: ', new_list)
+
+
+****************************************
+
+word = input('Введите слово: ')
+word_list = list(word)
+check_count = 0
+
+for i in range(len(word_list)):
+    if word_list[i] == word_list[-1-i]:
+        check_count += 1
+
+if check_count == len(word_list):
+    print('\nСлово является палиндромом')
+else:
+    print('\nСлово не является палиндромом')
+
+
+****************************************
+
+numbers_count = int(input('Сколько чисел добавляем в список? '))
+numbers_list = []
+
+for i in range(numbers_count):
+    number = int(input(f'Введите {i + 1} число: '))
+    numbers_list.append(number)
+print('Изначальный список:', numbers_list)
+for index in range(len(numbers_list)):
+    minimum = index
+    for mn in range(index + 1, len(numbers_list)):
+        if numbers_list[mn] < numbers_list[minimum]:
+            minimum = mn
+    numbers_list[minimum], numbers_list[index] = numbers_list[index], numbers_list[minimum]
+print('Отсортированный список:', numbers_list)
+
+****************************************
+
+# Принял решение исправить код через функции, так сказать, освежить в памяти тему функций)
+def added_list(list):
+    for i in list:
+        first_list.append(i)
+
+def check_number_list(list, num):
+    count = 0
+    for i in list:
+        if i == num:
+            count += 1
+    return count
+
+def delete_number_list(list, num):
+    for i in list:
+        if i == num:
+            list.remove(num)
+
+first_list = [1, 5, 3]
+second_list = [1, 5, 1, 5]
+third_list = [1, 3, 1, 5, 3, 3]
+
+added_list(second_list)
+print('Количество цифр 5 при первом объединении:', check_number_list(first_list, 5))
+delete_number_list(first_list, 5)
+added_list(third_list)
+print('Количество цифр 3 при втором объединении:', check_number_list(first_list, 3))
+print('Итоговый список:', first_list)
+
+****************************************
+
+first_rank_list = []
+second_rank_list = []
+
+for i in range(160, 177, 2):
+    first_rank_list.append(i)
+
+for i in range(162, 181, 3):
+    second_rank_list.append(i)
+
+first_rank_list.extend(second_rank_list)
+for index in range(len(first_rank_list)):
+    minimum = index
+    for mn in range(index + 1, len(first_rank_list)):
+        if first_rank_list[mn] < first_rank_list[minimum]:
+            minimum = mn
+    first_rank_list[minimum], first_rank_list[index] = first_rank_list[index], first_rank_list[minimum]
+print('Отсортированный список учеников:', first_rank_list)
+
+****************************************
+
+shop = [['каретка', 1200], ['шатун', 1000], ['седло', 300], ['педаль', 100], ['седло', 1500], ['рама', 12000],
+        ['обод', 2000], ['шатун', 200], ['седло', 2700]]
+
+item = input('Название детали: ')
+item_count = 0
+summ = 0
+for i in range(len(shop)):
+    if shop[i][0] == item:
+        item_count += 1
+        summ += shop[i][1]
+
+print('Количество деталей:', item_count)
+print('Общая стоимость:', summ)
+
+****************************************
+
+guests = ['Петя', 'Ваня', 'Саша', 'Лиза', 'Катя']
+
+while True:
+    print(f'\nСейчас на вечеринке {len(guests)} человек:', guests)
+    answer = input('Гость пришёл или ушёл? ')
+    if answer == 'Пора спать' or answer == 'пора спать':
+        print('Вечеринка закончилась, все легли спать.')
+        break
+    else:
+        name = input('Имя гостя: ')
+        if answer == 'ушел' or answer == 'ушёл':
+            if name not in guests:
+                print('Такого гостя нет в списке.')
+            else:
+                guests.remove(name)
+                print(f'Пока, {name}!')
+            if guests == []:
+                print('Никого не осталось на вечеринке :(')
+        if answer == 'пришел' or answer == 'пришёл':
+            if len(guests) < 6:
+                guests.append(name)
+                print(f'Привет, {name}!')
+            else:
+                print(f'Прости, {name}, но мест нет.')
+
+****************************************
+
+violator_songs = [
+    ['World in My Eyes', 4.86],
+    ['Sweetest Perfection', 4.43],
+    ['Personal Jesus', 4.56],
+    ['Halo', 4.9],
+    ['Waiting for the Night', 6.07],
+    ['Enjoy the Silence', 4.20],
+    ['Policy of Truth', 4.76],
+    ['Blue Dress', 4.29],
+    ['Clean', 5.83]
+]
+songs_count = int(input('Сколько песен выбрать? '))
+time_count = 0
+for i in range(songs_count):
+    song = input(f'Название {i + 1} песни: ')
+    for i_song in range(len(violator_songs)):
+        if violator_songs[i_song][0] == song:
+            time_count += violator_songs[i_song][1]
+print(f'Общее время звучания песен: {round(time_count, 2)} минут')
+
+****************************************
+
+def sort(list):
+    for index in range(len(list)):
+        minimum = index
+        for mn in range(index + 1, len(list)):
+            if list[mn] < list[minimum]:
+                minimum = mn
+        list[minimum], list[index] = list[index], list[minimum]
+
+
+legs_size_list = []
+skate_size_list = []
+
+skate_size_count = int(input('Количество коньков: '))
+for i in range(skate_size_count):
+    skate_size = int(input(f'Размер пары {i + 1}: '))
+    skate_size_list.append(skate_size)
+
+legs_size_count = int(input('Количество людей: '))
+for i in range(legs_size_count):
+    leg_size = int(input(f'Размер ноги человека {i + 1}: '))
+    legs_size_list.append(leg_size)
+
+sort(legs_size_list)
+sort(skate_size_list)
+
+count = 0
+for i_leg in legs_size_list:
+    for i_skate in range(len(skate_size_list)):
+        if skate_size_list[i_skate] >= i_leg:
+            skate_size_list.remove(skate_size_list[i_skate])
+            count += 1
+            break
+print('Наибольшее количество людей, которые могут взять ролики:', count)
+
+****************************************
+
+peoples = int(input('Количество человек: '))
+num_in_circle = int(input('Какое число в считалке? '))
+print(f'Значит, выбывает каждый {num_in_circle}-й человек')
+peoples_list = list(range(1, peoples + 1))
+
+count = 0
+while len(peoples_list) > 1:
+    print('\nТекущий круг людей:', peoples_list)
+    start_count = count % len(peoples_list)
+    count = (start_count + num_in_circle - 1) % len(peoples_list)
+    print(f'Начало счёта с номера {peoples_list[start_count]}')
+    print(f'Выбывает человек под номером {peoples_list[count]}')
+    peoples_list.remove(peoples_list[count])
+
+print(f'\nОстался человек под номером {peoples_list[0]}')
+
+****************************************
+
+def is_palindrome(check_list):
+    reverse_list = []
+    for i_num in range(len(check_list) - 1, -1, -1):
+        reverse_list.append(check_list[i_num])
+    if check_list == reverse_list:
+        return True
+    else:
+        return False
+
+
+numbers = int(input('Количество чисел: '))
+num_list = []
+new_num_list = []
+answer_list = []
+
+for i in range(numbers):
+    number = int(input(f'Введите {i + 1} число: '))
+    num_list.append(number)
+
+for i_nums in range(0, len(num_list)):
+    for j_elem in range(i_nums, len(num_list)):
+        new_num_list.append(num_list[j_elem])
+    if is_palindrome(new_num_list):
+        for i_answer in range(0, i_nums):
+            answer_list.append(num_list[i_answer])
+        answer_list.reverse()
+        break
+    new_num_list = []
+
+print('Последовательность:', num_list)
+print('Нужно приписать чисел:', len(answer_list))
+print('Сами числа:', answer_list)
+
+****************************************
+
+text = input('Введите текст: ')
+vowel_letters = ['а', 'е', 'ё', 'и', 'о', 'у', 'ы', 'ю', 'я']
+vowel_list = [letter for letter in text if letter in vowel_letters]
+
+print('Список гласных букв:', vowel_list)
+print('Длина списка:', len(vowel_list))
+
+
+****************************************
+
+number = int(input('Введите длину списка: '))
+numbers_list = [1 if i_num % 2 == 0 else i_num % 5 for i_num in range(number)]
+print('Результат:', numbers_list)
+
+
+****************************************
+
+import random
+
+first_command = [round(random.uniform(5, 10), 2) for _ in range(20)]
+second_command = [round(random.uniform(5, 10), 2) for _ in range(20)]
+winners = [first_command[i_num] if first_command[i_num] > second_command[i_num]
+           else second_command[i_num] for i_num in range(20)]
+
+print('Первая команда:', first_command)
+print('Вторая команда:', second_command)
+print('Победители тура:', winners)
+
+
+****************************************
+
+alphabet = 'abcdefg'
+
+print('1:', alphabet[:])
+print('2:', alphabet[::-1])
+print('3:', alphabet[0::2])
+print('4:', alphabet[1::2])
+print('5:', alphabet[:1])
+print('6:', alphabet[-1::])
+print('7:', alphabet[3:4:])
+print('8:', alphabet[-3::])
+print('9:', alphabet[3:5:])
+print('10:', alphabet[-4:-2:])
+
+
+****************************************
+
+text = input('Введите строку: ')
+
+rev_list = text[text.rindex('h')-1:text.index('h'):-1]
+print('Развёрнутая последовательность между первым и последним h:', rev_list)
+
+
+****************************************
+
+main_list = [[i + j for i in range(0, 12, 4)] for j in range(1, 5)]
+print(main_list)
+
+
+****************************************
+
+nice_list = [[[1, 2, 3], [4, 5, 6], [7, 8, 9]],
+             [[10, 11, 12], [13, 14, 15], [16, 17, 18]]]
+
+nice_list = [num for deep_list in nice_list for deep_list_2 in deep_list for num in deep_list_2]
+print(nice_list)
+
+
+****************************************
+
+def caesar_code(string, user_shift):
+    generate_list = [(alphabet[(alphabet.index(sym) + user_shift) % 33] if sym != ' ' else ' ') for sym in string]
+    new_string = ''
+    for i in generate_list:
+        new_string += i
+    return new_string
+
+
+alphabet = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
+message = input('Введите сообщение: ')
+shift = int(input('Введите сдвиг: '))
+
+code_message = caesar_code(message, shift)
+
+print('Зашифрованное сообщение:', code_message)
+
+
+****************************************
+
+menu = input('Доступное меню: ').split(';')
+print('Сейчас в меню есть:', ', '.join(menu))
+
+
+****************************************
+
+string = input('Введите строку: ').replace('.', '').split()
+longest_len = max([len(word) for word in string])
+longest_word = [word for word in string if len(word) == longest_len]
+
+print('Самое длинное слово: «{0}»'.format(longest_word[0]))
+print(f'Длина этого слова: {longest_len}')
+
+
+****************************************
+
+file_name = input('Название файла: ')
+spec_sym = ('@', '№', '$', '%', '^', '&', '*', '\\', '(', ')', '.txt', '.docx')
+
+if file_name.startswith(spec_sym):
+    print('Ошибка: название начинается на один из специальных символов.')
+elif not file_name.endswith(spec_sym):
+    print('Ошибка: неверное расширение файла. Ожидалось .txt или .docx.')
+else:
+    print('Файл назван верно.')
+
+
+****************************************
+
+string = input('Введите строку: ')
+print('Результат:', string.title())
+
+
+****************************************
+
+while True:
+    password = input('\nПридумайте пароль: ')
+    upper_count = [letter_up for letter_up in list(password) if letter_up.isupper()]
+    numbers_count = [i_num for i_num in list(password) if i_num.isdigit()]
+
+    if len(password) < 8 or len(upper_count) < 1 or len(numbers_count) < 3:
+        print('Пароль ненадёжный. Попробуйте ещё раз.')
+    else:
+        print('Это надёжный пароль.')
+        break
+
+
+****************************************
+
+string = input('Введите строку: ')
+code_string = ''
+count = 1
+
+for i in range(1, len(string)):
+    if string[i - 1] == string[i]:
+        count += 1
+    else:
+        code_string += string[i - 1] + str(count)
+        count = 1
+
+if len(string):
+    code_string += string[-1] + str(count)
+
+print('Закодированная строка:', code_string)
+
+
+****************************************
+
+while True:
+    ip_address = input('\nВведите IP: ').split('.')
+
+    if len(ip_address) != 4:
+        print('Адрес — это четыре числа, разделённые точками.')
+    else:
+        for ip_num in ip_address:
+            if ip_num.isdigit() is False:
+                print(f'{ip_num} - это не целое число.')
+                break
+            elif int(ip_num) > 255:
+                print(f'{ip_num} превышает 255.')
+                break
+            elif int(ip_num) < 0:
+                print(f'{ip_num} меньше 0.')
+                break
+        else:
+            print('IP-адрес корректен.')
+            break
+
+
+****************************************
+
+string_1 = list(input('Первая строка: '))
+string_2 = list(input('Вторая строка: '))
+res = []
+
+count = 0
+while count < len(string_2):
+    if string_1 != string_2:
+        for sym in range(len(string_2)):
+            res.append(string_2[sym - 1])
+        count += 1
+        string_2 = res
+        res = []
+    else:
+        print('Первая строка получается из второй со сдвигом', count)
+        break
+else:
+    print('Первую строку нельзя получить из второй с помощью циклического сдвига.')
+
+
+****************************************
+
+violator_songs = {
+    'World in My Eyes': 4.86,
+    'Sweetest Perfection': 4.43,
+    'Personal Jesus': 4.56,
+    'Halo': 4.9,
+    'Waiting for the Night': 6.07,
+    'Enjoy the Silence': 4.20,
+    'Policy of Truth': 4.76,
+    'Blue Dress': 4.29,
+    'Clean': 5.83
+}
+
+songs_count = int(input('Сколько песен выбрать? '))
+total_time = 0
+for i_song in range(songs_count):
+    song = input(f'Название {i_song + 1} песни: ')
+    total_time += violator_songs[song]
+print(f'Общее время звучания песен: {round(total_time, 2)} минут')
+
+
+****************************************
+
+data = {
+    "address": "0x544444444444",
+    "ETH": {
+        "balance": 444,
+        "total_in": 444,
+        "total_out": 4
+    },
+    "count_txs": 2,
+    "tokens": [
+        {
+            "fst_token_info": {
+                "address": "0x44444",
+                "name": "fdf",
+                "decimals": 0,
+                "symbol": "dsfdsf",
+                "total_supply": "3228562189",
+                "owner": "0x44444",
+                "last_updated": 1519022607901,
+                "issuances_count": 0,
+                "holders_count": 137528,
+                "price": False
+            },
+            "balance": 5000,
+            "totalIn": 0,
+            "total_out": 0
+        },
+        {
+            "sec_token_info": {
+                "address": "0x44444",
+                "name": "ggg",
+                "decimals": "2",
+                "symbol": "fff",
+                "total_supply": "250000000000",
+                "owner": "0x44444",
+                "last_updated": 1520452201,
+                "issuances_count": 0,
+                "holders_count": 20707,
+                "price": False
+            },
+            "balance": 500,
+            "totalIn": 0,
+            "total_out": 0
+        }
+    ]
+}
+
+
+for i_key in data:
+    print(f'Ключ: "{i_key}": {data[i_key]}')
+data["ETH"].update({"total_diff": 100})
+data['tokens'][0]['fst_token_info'].update({'name': 'doge'})
+data['ETH'].update(data['tokens'][0])
+data['tokens'][0].pop('total_out')
+data['tokens'][1]['sec_token_info'].update({'total_price': data['tokens'][1]['sec_token_info']['price']})
+data['tokens'][1]['sec_token_info'].pop('price')
+
+
+****************************************
+
+goods = {
+    'Лампа': '12345',
+    'Стол': '23456',
+    'Диван': '34567',
+    'Стул': '45678',
+}
+
+store = {
+    '12345': [
+        {'quantity': 27, 'price': 42},
+    ],
+    '23456': [
+        {'quantity': 22, 'price': 510},
+        {'quantity': 32, 'price': 520},
+    ],
+    '34567': [
+        {'quantity': 2, 'price': 1200},
+        {'quantity': 1, 'price': 1150},
+    ],
+    '45678': [
+        {'quantity': 50, 'price': 100},
+        {'quantity': 12, 'price': 95},
+        {'quantity': 43, 'price': 97},
+    ],
+}
+
+
+def func_currency(n):
+    if 5 <= n % 100 <= 20:
+        return 'рублей'
+    elif n % 10 == 1:
+        return 'рубль'
+    elif n % 10 in (2, 3, 4):
+        return 'рубля'
+    else:
+        return 'рублей'
+
+
+def func_psc(n):
+    if 5 <= n % 100 <= 20:
+        return 'штук'
+    elif n % 10 == 1:
+        return 'штука'
+    elif n % 10 in (2, 3, 4):
+        return 'штуки'
+    else:
+        return 'штук'
+
+
+for i_good in goods:
+    quantity = 0
+    cost = 0
+    for item in store[goods[i_good]]:
+        quantity += item['quantity']
+        cost += item['quantity'] * item['price']
+    print('{0} - {1} {2}, стоимость {3} {4}.'.format(
+        i_good, quantity, func_psc(quantity), cost, func_currency(cost)))
+
+
+****************************************
+
+def print_dict(dict):
+    for i_key, i_val in dict.items():
+        print(i_key, ':', i_val)
+
+
+text = input('Введите текст: ').lower()
+hist = dict()
+inverted_dict = dict()
+
+print('\nОригинальный словарь частот:')
+for sym in text:
+    if sym in hist:
+        hist[sym] += 1
+    else:
+        hist[sym] = 1
+print_dict(hist)
+
+print('\nИнвертированный словарь частот:')
+for key, val in sorted(hist.items()):
+    inverted_dict.setdefault(val, []).append(key)
+print_dict(inverted_dict)
+
+
+****************************************
+
+pairs_count = int(input('Введите количество пар слов: '))
+synonym_dict = {}
+for pairs in range(pairs_count):
+    pair = input(f'{pairs + 1}-я пара: ').lower().split()
+    synonym_dict[pair[0]] = pair[-1]
+    print(pair)
+
+while True:
+    word = input('Введите слово: ').lower()
+    for key, val in synonym_dict.items():
+        if word == key:
+            print(f'Синоним: {val.title()}')
+            break
+        elif word == val:
+            print(f'Синоним: {key.title()}')
+            break
+    else:
+        print('Такого слова в словаре нет.')
+
+
+
+****************************************
+
+orders_count = int(input('Введите количество заказов: '))
+orders_dict = {}
+
+for i_ord in range(orders_count):
+    order = input(f'{i_ord + 1}-й заказ: ').split()
+    name, pizza, count = order
+    if name in orders_dict:
+        if pizza in orders_dict[name]:
+            orders_dict[name][pizza] += int(count)
+        else:
+            orders_dict[name][pizza] = int(count)
+    else:
+        orders_dict.setdefault(name, {pizza: int(count)})
+
+for i_key, i_val in sorted(orders_dict.items()):
+    print(f'\n{i_key}:')
+    for j_key, j_val in sorted(orders_dict[i_key].items()):
+        print(f'{j_key}: {j_val}')
+
+
+****************************************
+
+def difference_list(list_1, list_2, list_3):
+    for i in list_3:
+        for j in list_2:
+            for k in list_1:
+                if i == j == k:
+                    diff_list.append(k)
+
+
+def intersection_list(list_1, list_2):
+    for i in list_2:
+        for j in list_1:
+            if i == j:
+                list_1.remove(i)
+
+
+array_1 = [1, 5, 10, 20, 40, 80, 100]
+array_2 = [6, 7, 20, 80, 100]
+array_3 = [3, 4, 15, 20, 30, 70, 80, 120]
+diff_list = []
+
+print('Задача 1:')
+difference_list(array_1, array_2, array_3)
+print('Решение без множеств:', end=' ')
+print(*diff_list, sep=', ')
+
+intersection = sorted(set(array_1) & set(array_2) & set(array_3))
+print('Решение с множествами:', end=' ')
+print(*intersection, sep=', ')
+
+print('\nЗадача 2:')
+intersection_list(array_1, array_2)
+intersection_list(array_1, array_3)
+print('Решение без множеств:', end=' ')
+print(*array_1, sep=', ')
+
+diff = sorted(set(array_1) - set(array_2) - set(array_3))
+print('Решение с множествами:', end=' ')
+print(*diff, sep=', ')
+
+
+****************************************
+
+def palindrome_func(string):
+    palindrome_dict = {}
+    for i_sym in string:
+        palindrome_dict[i_sym] = palindrome_dict.get(i_sym, 0) + 1
+
+    odd_count = 0
+    for i_val in palindrome_dict.values():
+        if i_val % 2 != 0:
+            odd_count += 1
+
+    return odd_count <= 1
+
+
+user_string = input('Введите строку: ')
+if palindrome_func(user_string):
+    print('Можно сделать палиндромом')
+else:
+    print('Нельзя сделать палиндромом')
+
+
+****************************************
+
+students = {
+    1: {
+        'name': 'Bob',
+        'surname': 'Vazovski',
+        'age': 23,
+        'interests': ['biology, swimming']
+    },
+    2: {
+        'name': 'Rob',
+        'surname': 'Stepanov',
+        'age': 24,
+        'interests': ['math', 'computer games', 'running']
+    },
+    3: {
+        'name': 'Alexander',
+        'surname': 'Krug',
+        'age': 22,
+        'interests': ['languages', 'health food']
+    }
+}
+
+
+def is_student_info(dictionary):
+    interest_list = {i_int for i_info in dictionary.values() for i_int in i_info['interests'] if i_int}
+    pairs = [(i_id, i_info['age']) for i_id, i_info in dictionary.items()]
+    surname_str = [sym for i_info in dictionary.values() for sym in i_info['surname']]
+    print('Список пар «ID студента — возраст»:', pairs)
+    print('Полный список интересов всех студентов:', interest_list)
+    print('Общая длина всех фамилий студентов:', len(surname_str))
+
+
+is_student_info(students)
+
+
+****************************************
+
+def is_prime(number):
+    if number < 2:
+        return False
+    for prime_number in range(2, (number // 2) + 1):
+        if number % prime_number == 0:
+            return False
+    return True
+
+
+def return_even_elements(data):
+    if isinstance(data, dict):
+        data = data.values()
+    result = [value for index, value in enumerate(data) if is_prime(index)]
+    return result
+
+
+print(return_even_elements('О Дивный Новый мир!'))
+print(return_even_elements([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]))
+
+
+****************************************
+
+players = {
+    ("Ivan", "Volkin"): (10, 5, 13),
+    ("Bob", "Robbin"): (7, 5, 14),
+    ("Rob", "Bobbin"): (12, 8, 2)
+}
+
+players_list = [i_key + i_value for i_key, i_value in players.items()]
+print(players_list)
+
+
+****************************************
+
+import random
+
+original_list = [random.randint(0, 10) for _ in range(10)]
+new_list = list(zip(original_list[::2], original_list[1::2]))
+new_list_2 = [(original_list[i], original_list[i + 1]) for i, j in enumerate(original_list) if i % 2 == 0]
+print('Оригинальный список:', original_list)
+print('Новый список (1-й способ):', new_list)
+print('Новый список (2-й способ):', new_list_2)
+
+
+****************************************
+
+def tpl_sort(tpl_p):
+    for i_num in tpl_p:
+        if not isinstance(i_num, int):
+            return tpl_p
+    return tuple(sorted(tpl_p))
+
+
+# tpl = (6, 3, -1, 8, 4, 10, -5)
+#
+# print(tpl_sort(tpl))
+
+
+****************************************
+
+def add_contact(contact_dict):
+    full_name = tuple(input('\nВведите имя и фамилию нового контакта (через пробел): ').title().split())
+    if full_name not in contact_dict:
+        contact_dict[full_name] = int(input('Введите номер телефона: '))
+    else:
+        print('Такой человек уже есть в контактах.')
+    print('\nТекущие контакты на телефоне:')
+    for i_name, i_tel in contact_dict.items():
+        print(f'{i_name[0]} {i_name[1]}: {i_tel}')
+
+
+def search_contact(contact_dict):
+    surname = input('Введите фамилию для поиска: ').title()
+    for i_person in contact_dict:
+        if surname in i_person[1]:
+            print(f'{i_person[0]} {i_person[1]}: {contact_dict[i_person]}')
+
+
+def main_menu():
+    while True:
+        button = int(input('\nВведите номер действия:\n1.Добавить контакт.\n2.Найти человека.\n'))
+        if button == 1:
+            add_contact(phonebook)
+        elif button == 2:
+            search_contact(phonebook)
+        else:
+            print('Ошибка. Введите корректный пункт меню: 1 или 2')
+
+
+phonebook = dict()
+main_menu()
+
+
+****************************************
+
+def min_short_len(string, tpl):
+    return min(len(string), len(tpl))
+
+
+user_str = 'abcd'
+user_tpl = (10, 20, 30, 40)
+
+pairs = ((user_str[i_elem], user_tpl[i_elem])
+         for i_elem in range(min_short_len(user_str, user_tpl)))
+print(pairs)
+for i_elem in pairs:
+    print(i_elem)
+
+
+****************************************
+
+def print_num(num):
+    if num <= 0:
+        return
+    print_num(num - 1)
+    print(num)
+
+
+number = int(input('Введите число: '))
+print_num(number)
+
+
+****************************************
+
+site = {
+    'html': {
+        'head': {
+            'title': 'Мой сайт'
+        },
+        'body': {
+            'h2': 'Здесь будет мой заголовок',
+            'div': 'Тут, наверное, какой-то блок',
+            'p': 'А вот здесь новый абзац'
+        }
+    }
+}
+
+
+def find_key(struct, key, max_depth, depth=1):
+    result = None
+    if max_depth and max_depth < depth:
+        return result
+    if key in struct:
+        return struct[key]
+    for sub_struct in struct.values():
+        if isinstance(sub_struct, dict):
+            result = find_key(sub_struct, key, max_depth, depth=depth + 1)
+            if result:
+                break
+    return result
+
+
+user_key = input('Искомый ключ: ')
+input_depth = input('Хотите ввести максимальную глубину? Y/N: ').lower()
+if input_depth == 'y':
+    search_depth = int(input('Введите максимальную глубину: '))
+else:
+    search_depth = None
+
+print('Значение ключа:', find_key(struct=site, max_depth=search_depth, key=user_key))
+
+
+****************************************
+
+import copy
+import json
+
+site = {
+    'html': {
+        'head': {
+            'title': 'Куплю/продам телефон недорого'
+        },
+        'body': {
+            'h2': 'У нас самая низкая цена на iphone',
+            'div': 'Купить',
+            'p': 'продать'
+        }
+    }
+}
+
+
+def find_key(struct, key, meaning):
+    if key in struct:
+        struct[key] = meaning
+        return struct[key]
+
+    for sub_struct in struct.values():
+        if isinstance(sub_struct, dict):
+            result = find_key(sub_struct, key, meaning)
+            if result:
+                return site
+
+
+new_sites = []
+number_sites = int(input('Сколько сайтов: '))
+for i_prod in range(number_sites):
+    product_name = input('Введите название продукта для нового сайта: ')
+    key = {'title': f'Куплю/продам {product_name} недорого', 'h2': f'У нас самая низкая цена на {product_name}'}
+    tmp_site = copy.deepcopy(site)
+    for new_key in key:
+        find_key(tmp_site, new_key, key[new_key])
+    new_sites.append({product_name: tmp_site})
+
+    for element in new_sites:
+        for i_key, i_value in element.items():
+            print(f'Сайт для {i_key}:')
+            print('site = ', end='')
+            print(json.dumps(i_value, indent=4, ensure_ascii=False))
+
+
+****************************************
+
+def summ(*args):
+    def flatten(a_list):
+        result = []
+        for num in a_list:
+            if isinstance(num, int):
+                result.append(num)
+            else:
+                result.extend(flatten(num))
+        return result
+
+    return sum(flatten(args))
+
+
+res = summ([[1, 2, [3]], [1], 3])
+print('Ответ:', res)
+res = summ(1, 2, 3, 4, 5)
+print('Ответ:', res)
+
+
+****************************************
+
+nice_list = [1, 2, [3, 4], [[5, 6, 7], [8, 9, 10]],
+             [[11, 12, 13], [14, 15], [16, 17, 18]]]
+
+
+def flatten(array):
+    if not array:
+        return []
+    return flatten(array[:-1]) + ([array[-1]] if not isinstance(array[-1], list) else flatten(array[-1]))
+
+
+res = flatten(nice_list)
+print(res)
+
+
+****************************************
+
+def qsort(array):
+    if len(array) <= 1:
+        return array
+    sep = array[-1]
+    left = []
+    mid = []
+    right = []
+    for i_num in array:
+        if i_num < sep:
+            left.append(i_num)
+        elif i_num == sep:
+            mid.append(i_num)
+        else:
+            right.append(i_num)
+    return qsort(left) + mid + qsort(right)
+
+
+user_array = [29, -8, 37, -4, 19, 39, 39, 13, 21, 25, 22, -17, 9, 16, 43, -5, 29, 2, 44, -2]
+
+print(qsort(user_array))
+
+
+****************************************
+
